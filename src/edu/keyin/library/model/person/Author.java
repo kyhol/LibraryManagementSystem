@@ -5,27 +5,37 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
-import edu.keyin.library.model.item.*;
+import edu.keyin.library.model.item.LibraryItem;
 
 public class Author {
     private String name;
     private Date birthdate;
-    private final ArrayList<edu.keyin.library.model.item.Book> listOfWorks;
+    private final ArrayList<LibraryItem> listOfWorks;
 
-    // Constructor
-    public Author(String name, Date birthdate, ArrayList listOfWorks) {
+    public Author(String name, Date birthdate) {
         this.name = name;
         this.birthdate = birthdate;
-        this.listOfWorks = listOfWorks;
+        this.listOfWorks = new ArrayList<>();
     }
 
-    public static Author createAuthorFromUserInput() {
-        Scanner scanner = new Scanner(System.in);
+    public void addWork(LibraryItem item) {
+        if (!listOfWorks.contains(item)) {
+            listOfWorks.add(item);
+        }
+    }
+
+    public void removeWork(LibraryItem item) {
+        listOfWorks.remove(item);
+    }
+
+    public ArrayList<LibraryItem> getListOfWorks() {
+        return new ArrayList<>(listOfWorks);
+    }
+
+    public static Author createAuthorFromUserInput(Scanner scanner) {
         String name = readName(scanner);
         Date birthdate = readBirthdate(scanner);
-        ArrayList listOfWorks = ;
-        scanner.close();
-        return new Author(name, birthdate, listOfWorks);
+        return new Author(name, birthdate);
     }
 
     private static String readName(Scanner scanner) {
@@ -65,13 +75,6 @@ public class Author {
         }
     }
 
-    private static ArrayList readListOfWorks(Scanner scanner) {
-        while (true) {
-
-        }
-    }
-
-    // Getters and setters
     public String getName() {
         return name;
     }
@@ -86,5 +89,14 @@ public class Author {
 
     public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
+    }
+
+    @Override
+    public String toString() {
+        return "Author{" +
+                "name='" + name + '\'' +
+                ", birthdate=" + birthdate +
+                ", number of works=" + listOfWorks.size() +
+                '}';
     }
 }
