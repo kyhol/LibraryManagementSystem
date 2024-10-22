@@ -9,13 +9,23 @@ import java.util.List;
  * All different types of items (books, periodicals, etc.) will extend this class.
  */
 public abstract class LibraryItem {
+
+    /**
+     * Represents possible states of a library item
+     */
+    public enum Status {
+        AVAILABLE,
+        CHECKED_OUT,
+        OVERDUE
+    }
+
     private String id;
     private String title;
     private List<Author> authors;
     private String publisher;
     private int numberOfCopies;
     private int availableCopies;
-    private String status;  // Can be either AVAILABLE or CHECKED_OUT
+    private Status status;
 
     /**
      * Sets up a new library item with its basic info.
@@ -44,7 +54,7 @@ public abstract class LibraryItem {
         this.publisher = publisher;
         this.numberOfCopies = numberOfCopies;
         this.availableCopies = numberOfCopies;
-        this.status = "AVAILABLE";
+        this.status = Status.AVAILABLE;
         this.authors = new ArrayList<>();
     }
 
@@ -185,18 +195,17 @@ public abstract class LibraryItem {
 
     /**
      * Gets the current status of this item.
-     * @return Current status (AVAILABLE or CHECKED_OUT)
+     * @return Current status
      */
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
     /**
      * Updates the status based on whether any copies are available.
-     * Sets to AVAILABLE if there are copies, CHECKED_OUT if none are left.
      */
     private void updateStatus() {
-        status = (availableCopies > 0) ? "AVAILABLE" : "CHECKED_OUT";
+        status = (availableCopies > 0) ? Status.AVAILABLE : Status.CHECKED_OUT;
     }
 
     /**
@@ -208,28 +217,26 @@ public abstract class LibraryItem {
     }
 
     /**
-     * Handles the borrowing process for this item. Each type of item
-     * will implement its own borrowing rules.
+     * Handles the borrowing process for this item.
      * @return true if successfully borrowed, false if not
      */
     public abstract boolean borrow();
 
     /**
-     * Handles the return process for this item. Each type of item
-     * will implement its own return rules.
-     * @return true if successfully returned, false if not
+     * Handles the return process for this item.
+     * @return true if successfully returned
      */
     public abstract boolean returnItem();
 
     /**
-     * Gets what kind of item this is (book, periodical, etc).
+     * Gets what kind of item this is.
      * @return The type of this item as a string
      */
     public abstract String getItemType();
 
     /**
-     * Creates a string with all the basic info about this item.
-     * @return String containing item details
+     * Creates a string with this item's details.
+     * @return String with the item's information
      */
     @Override
     public String toString() {
@@ -239,7 +246,7 @@ public abstract class LibraryItem {
                 ", publisher='" + publisher + '\'' +
                 ", numberOfCopies=" + numberOfCopies +
                 ", availableCopies=" + availableCopies +
-                ", status='" + status + '\'' +
+                ", status=" + status +
                 '}';
     }
 }
