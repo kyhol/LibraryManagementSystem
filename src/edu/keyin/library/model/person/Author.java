@@ -2,25 +2,30 @@ package edu.keyin.library.model.person;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
+import edu.keyin.library.model.item.*;
 
 public class Author {
     private String name;
     private Date birthdate;
+    private final ArrayList<edu.keyin.library.model.item.Book> listOfWorks;
 
     // Constructor
-    public Author(String name, Date birthdate) {
+    public Author(String name, Date birthdate, ArrayList listOfWorks) {
         this.name = name;
         this.birthdate = birthdate;
+        this.listOfWorks = listOfWorks;
     }
 
     public static Author createAuthorFromUserInput() {
         Scanner scanner = new Scanner(System.in);
         String name = readName(scanner);
         Date birthdate = readBirthdate(scanner);
+        ArrayList listOfWorks = ;
         scanner.close();
-        return new Author(name, birthdate);
+        return new Author(name, birthdate, listOfWorks);
     }
 
     private static String readName(Scanner scanner) {
@@ -57,6 +62,12 @@ public class Author {
                     System.out.println("Invalid date format. Please use DD-MM-YYYY format.");
                 }
             }
+        }
+    }
+
+    private static ArrayList readListOfWorks(Scanner scanner) {
+        while (true) {
+
         }
     }
 
