@@ -1,6 +1,6 @@
 package edu.keyin.library.model.item;
 
-import edu.keyin.library.model.Author;
+import edu.keyin.library.model.person.Author;
 import java.util.ArrayList;
 import java.util.List;
 
