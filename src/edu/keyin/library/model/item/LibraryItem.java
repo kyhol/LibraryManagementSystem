@@ -68,7 +68,4 @@ public abstract class LibraryItem {
     public void setAuthor(Author author) {
         this.author = author;
     }
-
-    // Abstract method for identifying the type of item
-    public abstract String getItemType();
 }
