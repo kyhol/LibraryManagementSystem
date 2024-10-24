@@ -1,18 +1,20 @@
 package edu.keyin.library.model.person;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Scanner;
 import edu.keyin.library.model.item.LibraryItem;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Author {
     private String name;
-    private Date birthdate;
+    private LocalDate birthdate;
     private final ArrayList<LibraryItem> listOfWorks;
 
-    public Author(String name, Date birthdate) {
+    // Constructor
+    public Author(String name, LocalDate birthdate) {
         this.name = name;
         this.birthdate = birthdate;
         this.listOfWorks = new ArrayList<>();
@@ -32,12 +34,14 @@ public class Author {
         return new ArrayList<>(listOfWorks);
     }
 
+    // Method to create an Author from user input
     public static Author createAuthorFromUserInput(Scanner scanner) {
         String name = readName(scanner);
-        Date birthdate = readBirthdate(scanner);
+        LocalDate birthdate = readBirthdate(scanner);
         return new Author(name, birthdate);
     }
 
+    // Helper method to read name
     private static String readName(Scanner scanner) {
         String name;
         while (true) {
@@ -52,29 +56,28 @@ public class Author {
         }
     }
 
-    private static Date readBirthdate(Scanner scanner) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        dateFormat.setLenient(false);
-
+    // Helper method to read birthdate (uses LocalDate)
+    private static LocalDate readBirthdate(Scanner scanner) {
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         while (true) {
             System.out.println("Please enter the author's birthdate (DD-MM-YYYY): ");
             if (scanner.hasNextLine()) {
                 String input = scanner.nextLine().trim();
                 try {
-                    Date date = dateFormat.parse(input);
-                    Date currentDate = new Date();
-                    if (date.after(currentDate)) {
+                    LocalDate date = LocalDate.parse(input, dateFormat);
+                    if (date.isAfter(LocalDate.now())) {
                         System.out.println("Birthdate cannot be in the future. Please try again.");
                         continue;
                     }
                     return date;
-                } catch (ParseException e) {
+                } catch (DateTimeParseException e) {
                     System.out.println("Invalid date format. Please use DD-MM-YYYY format.");
                 }
             }
         }
     }
 
+    // Getters and Setters
     public String getName() {
         return name;
     }
@@ -83,14 +86,15 @@ public class Author {
         this.name = name;
     }
 
-    public Date getBirthdate() {
+    public LocalDate getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Date birthdate) {
+    public void setBirthdate(LocalDate birthdate) {
         this.birthdate = birthdate;
     }
 
+    // toString method to represent the Author object
     @Override
     public String toString() {
         return "Author{" +
