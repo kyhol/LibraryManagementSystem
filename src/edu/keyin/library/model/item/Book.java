@@ -2,12 +2,13 @@ package edu.keyin.library.model.item;
 
 import edu.keyin.library.model.person.Author;
 
-public abstract class Book extends LibraryItem {
+public class Book extends LibraryItem {
     // Define enum for valid book types
     public enum BookType {
         PRINTED("Printed"),
         ELECTRONIC("Electronic"),
         AUDIO("Audio");
+        //clarify case sensitivity
 
         private final String value;
 

@@ -9,6 +9,7 @@ public abstract class LibraryItem {
     private String publisher;
     private int numberOfCopies;
     private Author author;
+    //add status enum?
 
     public LibraryItem(String id, String title, String isbn, String publisher,
                        int numberOfCopies, Author author) {

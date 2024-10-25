@@ -2,7 +2,7 @@ package edu.keyin.library.model.item;
 
 import edu.keyin.library.model.person.Author;
 
-public abstract class Periodical extends LibraryItem {
+public class Periodical extends LibraryItem {
     // Define enum for valid periodical types
     public enum PeriodicalType {
         PRINTED("Printed"),
