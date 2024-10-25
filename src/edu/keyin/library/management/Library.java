@@ -2,6 +2,7 @@ package edu.keyin.library.management;
 
 import edu.keyin.library.model.item.LibraryItem;
 import edu.keyin.library.model.person.Author;
+import edu.keyin.library.model.person.Patron;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +61,10 @@ public class Library {
                 }
             }
         }
+    }
+
+    public void addItem(Patron patron, LibraryItem libraryItem) {
+        patron.borrowItem(libraryItem);
     }
 
     //Need to move to Demo.java
