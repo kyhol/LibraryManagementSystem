@@ -1,9 +1,12 @@
 package edu.keyin.library;
 import java.util.Scanner;
+import edu.keyin.library.management.Library;
+
 
 public class Demo {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        Library library = new Library();  // This creates the library instance
         int choice;
 
         do {
@@ -45,7 +48,7 @@ public class Demo {
                     break;
                 case 3:
                     System.out.println("Deleting a library item...");
-                    // Add logic to delete a library item
+                    library.deleteLibraryItem();
                     break;
                 case 4:
                     System.out.println("Borrowing a library item...");
@@ -53,7 +56,7 @@ public class Demo {
                     break;
                 case 5:
                     System.out.println("Returning a library item...");
-                    // Add logic to return a library item
+                    library.returnLibraryItem();
                     break;
                 case 6:
                     System.out.println("Exiting the system. Goodbye!");
