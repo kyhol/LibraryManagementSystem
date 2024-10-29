@@ -54,4 +54,3 @@ Exiting the Application
 Notes:
 - If an invalid input is provided at any stage, the system will display an error message and prompt the user to try again. 
 - Each submenu allows returning to the previous menu, helping users navigate back to the Main Menu easily.
-![image](https://github.com/user-attachments/assets/00588371-c185-4f72-82a1-bda385391eff)
