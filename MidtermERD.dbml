@@ -1,0 +1,61 @@
+Table authors {
+  author_id int [pk, increment]
+  name varchar(100) [not null]
+  date_of_birth date
+}
+
+Table library_items {
+  item_id int [pk, increment]
+  type enum('BOOK', 'PERIODICAL') [not null]
+  title varchar(255) [not null]
+  isbn varchar(13)
+  publisher varchar(100)
+  number_of_copies int [default: 1]
+  status enum('AVAILABLE', 'CHECKED_OUT', 'OVERDUE') [default: 'AVAILABLE']
+}
+
+Table author_items {
+  author_id int [ref: > authors.author_id]
+  item_id int [ref: > library_items.item_id]
+
+  indexes {
+    (author_id, item_id) [pk]
+  }
+}
+
+Table books {
+  item_id int [pk, ref: > library_items.item_id]
+  book_type enum('PRINTED', 'ELECTRONIC', 'AUDIO') [not null]
+}
+
+Table periodicals {
+  item_id int [pk, ref: > library_items.item_id]
+  periodical_type enum('PRINTED', 'ELECTRONIC') [not null]
+}
+
+Table patrons {
+  patron_id int [pk, increment]
+  patron_type enum('STUDENT', 'EMPLOYEE') [not null]
+  name varchar(100) [not null]
+  address text
+  phone_number varchar(20)
+}
+
+Table students {
+  patron_id int [pk, ref: > patrons.patron_id]
+  student_number varchar(20) [unique, not null]
+}
+
+Table employees {
+  patron_id int [pk, ref: > patrons.patron_id]
+  employee_number varchar(20) [unique, not null]
+}
+
+Table borrowing_records {
+  patron_id int [ref: > patrons.patron_id]
+  item_id int [ref: > library_items.item_id]
+
+  indexes {
+    (patron_id, item_id) [pk]
+  }
+}
