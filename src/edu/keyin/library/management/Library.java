@@ -99,11 +99,6 @@ public class Library {
         patron.borrowItem(libraryItem);
     }
 
-    //Need to move to Demo.java
-    public static void main(String[] args) {
-        Library library = new Library();
-        library.worksByAuthor();
-    }
     public void returnLibraryItem() {
         while (true) {
             System.out.println("\nReturn Library Item");
@@ -557,5 +552,91 @@ public class Library {
             }
         }
     }
+    //Method to add a Patron
+    public void addPatron() {
+        System.out.println("\nAdd New Patron");
+        Patron newPatron = Patron.createPatronFromUserInput(scanner);
+        dataInitializer.getPatrons().add(newPatron);
+        System.out.println("Patron added successfully: " + newPatron.getName());
+    }
 
-}
+    // Method to edit author
+    public void editPatron() {
+        while (true) {
+            System.out.println("\nEdit Patron");
+            System.out.println("Enter patron's name (or 'exit' to return to menu): ");
+
+            String searchName = scanner.nextLine().trim();
+
+            if (searchName.equalsIgnoreCase("exit")) {
+                return;
+            }
+
+            // Finding the patron
+            Patron patronToEdit = null;
+            for (Patron patron : dataInitializer.getPatrons()) {
+                if (patron.getName().equalsIgnoreCase(searchName)) {
+                    patronToEdit = patron;
+                    break;
+                }
+            }
+
+            if (patronToEdit != null) {
+                patronToEdit.editPatronInfo(scanner);
+                return;
+            } else {
+                System.out.println("Patron not found: " + searchName);
+                System.out.println("Available patrons:");
+                for (Patron patron : dataInitializer.getPatrons()) {
+                    System.out.println("- " + patron.getName());
+                }
+            }
+        }
+    }
+
+    //Method to delete a Patron
+    public void deletePatron() {
+        while (true) {
+            System.out.println("\nDelete Patron");
+            System.out.println("Enter patron's name (or 'exit' to return to menu): ");
+
+            String searchName = scanner.nextLine().trim();
+
+            if (searchName.equalsIgnoreCase("exit")) {
+                return;
+            }
+
+            // Find the patron
+            Patron patronToDelete = null;
+            for (Patron patron : dataInitializer.getPatrons()) {
+                if (patron.getName().equalsIgnoreCase(searchName)) {
+                    patronToDelete = patron;
+                    break;
+                }
+            }
+            //return leftover items
+            if (patronToDelete != null) {
+                ArrayList<LibraryItem> items = patronToDelete.getBorrowedItems();
+                if (!items.isEmpty()) {
+                    System.out.println("The following items will be returned:");
+                    for (LibraryItem item : items) {
+                        System.out.println("- " + item.getTitle());
+                        patronToDelete.returnItem(item);
+                    }
+                }
+
+                // Remove patron from library
+                dataInitializer.getPatrons().remove(patronToDelete);
+                System.out.println("Patron deleted successfully: " + patronToDelete.getName());
+                return;
+            } else {
+                System.out.println("Patron not found: " + searchName);
+                System.out.println("Available patrons:");
+                for (Patron patron : dataInitializer.getPatrons()) {
+                    System.out.println("- " + patron.getName());
+                }
+            }
+        }
+    }
+
+    }
