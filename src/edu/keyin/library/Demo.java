@@ -2,6 +2,7 @@ package edu.keyin.library;
 
 import edu.keyin.library.management.Library;
 import edu.keyin.library.model.person.Author;
+import edu.keyin.library.model.person.Patron;
 
 import java.util.Scanner;
 
@@ -101,7 +102,7 @@ public class Demo {
                     itemMenu();
                     break;
                 case "4":
-                    patronMenu();
+                    patronMgmtMenu();
                     break;
                 case "5":
                     return;
@@ -189,6 +190,35 @@ public class Demo {
                     break;
                 case "3":
                     library.deleteLibraryItem();
+                    break;
+                case "4":
+                    return;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+
+    private void patronMgmtMenu() {
+        while (true) {
+            System.out.println("\n=== Patron Management ===");
+            System.out.println("1. Add Patron");
+            System.out.println("2. Edit Patron");
+            System.out.println("3. Delete Patron");
+            System.out.println("4. Return to Librarian Menu");
+            System.out.println("Enter your choice: ");
+
+            String choice = scanner.nextLine().trim();
+
+            switch (choice) {
+                case "1":
+                    library.addPatron();
+                    break;
+                case "2":
+                    library.editPatron();
+                    break;
+                case "3":
+                    library.deletePatron();
                     break;
                 case "4":
                     return;
