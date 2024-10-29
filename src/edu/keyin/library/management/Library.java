@@ -1,8 +1,11 @@
 package edu.keyin.library.management;
 
 import edu.keyin.library.model.item.LibraryItem;
+import edu.keyin.library.model.item.Book;
+import edu.keyin.library.model.item.Periodical;
 import edu.keyin.library.model.person.Author;
 import edu.keyin.library.model.person.Patron;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +18,35 @@ public class Library {
     public Library() {
         this.dataInitializer = new LibraryDataInitializer();
         this.scanner = new Scanner(System.in);
+    }
+
+    // Method to search by ISBN
+    public LibraryItem searchByIsbn() {
+        System.out.println("\nSearch by ISBN");
+        System.out.println("Enter ISBN (or 'exit' to return to main menu): ");
+
+        String searchIsbn = scanner.nextLine().trim();
+
+        if (searchIsbn.equalsIgnoreCase("exit")) {
+            return null;
+        }
+
+        // Search through the data items for matching ISBN
+        for (LibraryItem item : dataInitializer.getItems()) {
+            if (item.getIsbn().equalsIgnoreCase(searchIsbn)) {
+                System.out.println("\nFound item:");
+                System.out.println("- " + item.getTitle() + " (ID: " + item.getId() + ")");
+                return item;
+            }
+        }
+
+        System.out.println("No item found with ISBN: " + searchIsbn);
+        System.out.println("\nAvailable items and their ISBNs:");
+        for (LibraryItem item : dataInitializer.getItems()) {
+            System.out.println("- " + item.getTitle() + " (ISBN: " + item.getIsbn() + ")");
+        }
+
+        return null;
     }
 
     public ArrayList<LibraryItem> worksByAuthor() {
@@ -200,4 +232,330 @@ public class Library {
             return;
         }
     }
+
+    // Method to search by title
+    public ArrayList<LibraryItem> searchByTitle() {
+        System.out.println("\nSearch by Title");
+        System.out.println("Enter title (or 'exit' to return to main menu): ");
+
+        String searchTitle = scanner.nextLine().trim();
+
+        if (searchTitle.equalsIgnoreCase("exit")) {
+            return new ArrayList<>();
+        }
+
+        ArrayList<LibraryItem> foundItems = new ArrayList<>();
+        for (LibraryItem item : dataInitializer.getItems()) {
+            if (item.getTitle().toLowerCase().contains(searchTitle.toLowerCase())) {
+                foundItems.add(item);
+            }
+        }
+
+        if (foundItems.isEmpty()) {
+            System.out.println("No items found containing: " + searchTitle);
+        } else {
+            System.out.println("\nFound items:");
+            for (LibraryItem item : foundItems) {
+                System.out.println("- " + item.getTitle() + " (ID: " + item.getId() + ")");
+            }
+        }
+
+        return foundItems;
+    }
+
+    public void addItem() {
+        System.out.println("\nAdd New Library Item");
+        System.out.println("Select item type:");
+        System.out.println("1. Book");
+        System.out.println("2. Periodical");
+        System.out.println("3. Cancel");
+
+        String choice = scanner.nextLine().trim();
+
+        if (choice.equals("3")) {
+            return;
+        }
+
+        // Get common details first
+        System.out.println("Enter item ID: ");
+        String id = scanner.nextLine().trim();
+
+        System.out.println("Enter title: ");
+        String title = scanner.nextLine().trim();
+
+        System.out.println("Enter ISBN: ");
+        String isbn = scanner.nextLine().trim();
+
+        System.out.println("Enter publisher: ");
+        String publisher = scanner.nextLine().trim();
+
+        System.out.println("Enter number of copies: ");
+        int copies = Integer.parseInt(scanner.nextLine().trim());
+
+        // Get author
+        System.out.println("Enter author's name: ");
+        String authorName = scanner.nextLine().trim();
+
+        Author author = null;
+        for (Author a : dataInitializer.getAuthors()) {
+            if (a.getName().equalsIgnoreCase(authorName)) {
+                author = a;
+                break;
+            }
+        }
+
+        if (author == null) {
+            System.out.println("Author not found. Please add the author first.");
+            return;
+        }
+
+        LibraryItem newItem = null;
+
+        switch (choice) {
+            case "1": // Book
+                System.out.println("Enter book type (Printed/Electronic/Audio): ");
+                String bookType = scanner.nextLine().trim();
+                newItem = new Book(id, title, isbn, publisher, copies, author, bookType);
+                break;
+
+            case "2": // Periodical
+                System.out.println("Enter periodical type (Printed/Electronic): ");
+                String periodicalType = scanner.nextLine().trim();
+                newItem = new Periodical(id, title, isbn, publisher, copies, author, periodicalType);
+                break;
+
+            default:
+                System.out.println("Invalid choice");
+                return;
+        }
+
+        dataInitializer.getItems().add(newItem);
+        author.addWork(newItem);
+        System.out.println("Item added successfully!");
+    }
+
+    // Method to edit an item
+    public void editItem() {
+        System.out.println("\nEdit Library Item");
+        System.out.println("Enter item ID: ");
+        String itemId = scanner.nextLine().trim();
+
+        LibraryItem itemToEdit = null;
+        for (LibraryItem item : dataInitializer.getItems()) {
+            if (item.getId().equalsIgnoreCase(itemId)) {
+                itemToEdit = item;
+                break;
+            }
+        }
+
+        if (itemToEdit == null) {
+            System.out.println("Item not found: " + itemId);
+            System.out.println("Available items:");
+            for (LibraryItem item : dataInitializer.getItems()) {
+                System.out.println("- " + item.getTitle() + " (ID: " + item.getId() + ")");
+            }
+            return;
+        }
+
+        while (true) {
+            System.out.println("\nEditing: " + itemToEdit.getTitle());
+            System.out.println("1. Edit Title");
+            System.out.println("2. Edit ISBN");
+            System.out.println("3. Edit Publisher");
+            System.out.println("4. Edit Number of Copies");
+            System.out.println("5. Edit Type");
+            System.out.println("6. Return to Menu");
+
+            String choice = scanner.nextLine().trim();
+
+            switch (choice) {
+                case "1":
+                    System.out.println("Current title: " + itemToEdit.getTitle());
+                    System.out.println("Enter new title: ");
+                    itemToEdit.setTitle(scanner.nextLine().trim());
+                    break;
+
+                case "2":
+                    System.out.println("Current ISBN: " + itemToEdit.getIsbn());
+                    System.out.println("Enter new ISBN: ");
+                    itemToEdit.setIsbn(scanner.nextLine().trim());
+                    break;
+
+                case "3":
+                    System.out.println("Current publisher: " + itemToEdit.getPublisher());
+                    System.out.println("Enter new publisher: ");
+                    itemToEdit.setPublisher(scanner.nextLine().trim());
+                    break;
+
+                case "4":
+                    System.out.println("Current copies: " + itemToEdit.getNumberOfCopies());
+                    System.out.println("Enter new number of copies: ");
+                    try {
+                        int newCopies = Integer.parseInt(scanner.nextLine().trim());
+                        if (newCopies >= 0) {
+                            itemToEdit.setNumberOfCopies(newCopies);
+                        } else {
+                            System.out.println("Number of copies must be non-negative.");
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid input. Please enter a number.");
+                    }
+                    break;
+
+                case "5":
+                    if (itemToEdit instanceof Book) {
+                        System.out.println("Current type: " + ((Book) itemToEdit).getType());
+                        System.out.println("Enter new type (Printed/Electronic/Audio): ");
+                        ((Book) itemToEdit).setType(scanner.nextLine().trim());
+                    } else if (itemToEdit instanceof Periodical) {
+                        System.out.println("Current type: " + ((Periodical) itemToEdit).getType());
+                        System.out.println("Enter new type (Printed/Electronic): ");
+                        ((Periodical) itemToEdit).setType(scanner.nextLine().trim());
+                    }
+                    break;
+
+                case "6":
+                    return;
+
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+
+    // Method to borrow a library item
+    public void borrowLibraryItem() {
+        System.out.println("\nBorrow Library Item");
+        System.out.println("Enter patron name: ");
+        String patronName = scanner.nextLine().trim();
+
+        // Find patron
+        Patron patron = null;
+        for (Patron p : dataInitializer.getPatrons()) {
+            if (p.getName().equalsIgnoreCase(patronName)) {
+                patron = p;
+                break;
+            }
+        }
+
+        if (patron == null) {
+            System.out.println("Patron not found: " + patronName);
+            return;
+        }
+
+        // Search for item
+        System.out.println("Enter item ID to borrow: ");
+        String itemId = scanner.nextLine().trim();
+
+        LibraryItem item = null;
+        for (LibraryItem i : dataInitializer.getItems()) {
+            if (i.getId().equalsIgnoreCase(itemId)) {
+                item = i;
+                break;
+            }
+        }
+
+        if (item == null) {
+            System.out.println("Item not found: " + itemId);
+            return;
+        }
+
+        // Check availability
+        if (item.getNumberOfCopies() > 0) {
+            patron.borrowItem(item);
+            item.setNumberOfCopies(item.getNumberOfCopies() - 1);
+            System.out.println("Successfully borrowed: " + item.getTitle());
+        } else {
+            System.out.println("Item is currently unavailable: " + item.getTitle());
+        }
+    }
+
+    // Method to add an author
+    public void addAuthor() {
+        System.out.println("\nAdd New Author");
+        Author newAuthor = Author.createAuthorFromUserInput(scanner);
+        dataInitializer.getAuthors().add(newAuthor);
+        System.out.println("Author added successfully: " + newAuthor.getName());
+    }
+
+    // Method to edit author
+    public void editAuthor() {
+        while (true) {
+            System.out.println("\nEdit Author");
+            System.out.println("Enter author's name (or 'exit' to return to menu): ");
+
+            String searchName = scanner.nextLine().trim();
+
+            if (searchName.equalsIgnoreCase("exit")) {
+                return;
+            }
+
+            // Finding the author
+            Author authorToEdit = null;
+            for (Author author : dataInitializer.getAuthors()) {
+                if (author.getName().equalsIgnoreCase(searchName)) {
+                    authorToEdit = author;
+                    break;
+                }
+            }
+
+            if (authorToEdit != null) {
+                authorToEdit.editAuthorInfo(scanner);
+                return;
+            } else {
+                System.out.println("Author not found: " + searchName);
+                System.out.println("Available authors:");
+                for (Author author : dataInitializer.getAuthors()) {
+                    System.out.println("- " + author.getName());
+                }
+            }
+        }
+    }
+
+    // Method to delete an author - give the authors name a NULL value instead of deleting the collection of their work
+    public void deleteAuthor() {
+        while (true) {
+            System.out.println("\nDelete Author");
+            System.out.println("Enter author's name (or 'exit' to return to menu): ");
+
+            String searchName = scanner.nextLine().trim();
+
+            if (searchName.equalsIgnoreCase("exit")) {
+                return;
+            }
+
+            // Find the author
+            Author authorToDelete = null;
+            for (Author author : dataInitializer.getAuthors()) {
+                if (author.getName().equalsIgnoreCase(searchName)) {
+                    authorToDelete = author;
+                    break;
+                }
+            }
+
+            if (authorToDelete != null) {
+                // Get their works and set author to null
+                ArrayList<LibraryItem> works = authorToDelete.getListOfWorks();
+                if (!works.isEmpty()) {
+                    System.out.println("The following works will have their author set to null:");
+                    for (LibraryItem item : works) {
+                        System.out.println("- " + item.getTitle());
+                        item.setAuthor(null);
+                    }
+                }
+
+                // Remove author from library
+                dataInitializer.getAuthors().remove(authorToDelete);
+                System.out.println("Author deleted successfully: " + authorToDelete.getName());
+                return;
+            } else {
+                System.out.println("Author not found: " + searchName);
+                System.out.println("Available authors:");
+                for (Author author : dataInitializer.getAuthors()) {
+                    System.out.println("- " + author.getName());
+                }
+            }
+        }
+    }
+
 }

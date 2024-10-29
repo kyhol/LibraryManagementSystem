@@ -3,7 +3,7 @@ package edu.keyin.library.model.item;
 import edu.keyin.library.model.person.Author;
 
 public class Periodical extends LibraryItem {
-    // Define enum for valid periodical types
+    // Existing enum definition
     public enum PeriodicalType {
         PRINTED("Printed"),
         ELECTRONIC("Electronic");
@@ -18,7 +18,6 @@ public class Periodical extends LibraryItem {
             return value;
         }
 
-        // Helper method to convert string to enum
         public static PeriodicalType fromString(String text) {
             for (PeriodicalType type : PeriodicalType.values()) {
                 if (type.value.equalsIgnoreCase(text)) {
@@ -43,5 +42,34 @@ public class Periodical extends LibraryItem {
 
     public void setType(String type) {
         this.type = PeriodicalType.fromString(type);
+    }
+
+    // Add methods to check and manage availability
+    public boolean isAvailable() {
+        return getNumberOfCopies() > 0;
+    }
+
+    // Method to handle when a copy is borrowed
+    public boolean checkOutCopy() {
+        if (isAvailable()) {
+            setNumberOfCopies(getNumberOfCopies() - 1);
+            return true;
+        }
+        return false;
+    }
+
+    // Method to handle when a copy is returned
+    public void returnCopy() {
+        setNumberOfCopies(getNumberOfCopies() + 1);
+    }
+
+    @Override
+    public String toString() {
+        return "Periodical{" +
+                "id='" + getId() + '\'' +
+                ", title='" + getTitle() + '\'' +
+                ", type=" + type +
+                ", copies available=" + getNumberOfCopies() +
+                '}';
     }
 }

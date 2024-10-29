@@ -8,7 +8,6 @@ public class Book extends LibraryItem {
         PRINTED("Printed"),
         ELECTRONIC("Electronic"),
         AUDIO("Audio");
-        //clarify case sensitivity
 
         private final String value;
 
@@ -45,5 +44,34 @@ public class Book extends LibraryItem {
 
     public void setType(String type) {
         this.type = BookType.fromString(type);
+    }
+
+    // Add methods to check and manage availability
+    public boolean isAvailable() {
+        return getNumberOfCopies() > 0;
+    }
+
+    // Method to handle when a copy is borrowed
+    public boolean checkOutCopy() {
+        if (isAvailable()) {
+            setNumberOfCopies(getNumberOfCopies() - 1);
+            return true;
+        }
+        return false;
+    }
+
+    // Method to handle when a copy is returned
+    public void returnCopy() {
+        setNumberOfCopies(getNumberOfCopies() + 1);
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id='" + getId() + '\'' +
+                ", title='" + getTitle() + '\'' +
+                ", type=" + type +
+                ", copies available=" + getNumberOfCopies() +
+                '}';
     }
 }

@@ -78,4 +78,66 @@ public abstract class Patron {
             return new Employee(name, address, phoneNumber, employeeId);
         }
     }
+
+    // Method to edit a patron
+    public abstract void editPatronSpecificInfo(Scanner scanner); // Abstract method for student/employee specific edits
+
+    public void editPatronInfo(Scanner scanner) {
+        while (true) {
+            System.out.println("\nEdit Patron Information");
+            System.out.println("1. Edit Name");
+            System.out.println("2. Edit Address");
+            System.out.println("3. Edit Phone Number");
+            System.out.println("4. Edit Specific Information (ID)");
+            System.out.println("5. Exit");
+
+            try {
+                String choice = scanner.nextLine().trim();
+
+                switch (choice) {
+                    case "1":
+                        System.out.println("Current name: " + this.getName());
+                        System.out.println("Enter new name: ");
+                        String newName = scanner.nextLine().trim();
+                        if (!newName.isEmpty()) {
+                            this.setName(newName);
+                            System.out.println("Name updated successfully.");
+                        }
+                        break;
+
+                    case "2":
+                        System.out.println("Current address: " + this.getAddress());
+                        System.out.println("Enter new address: ");
+                        String newAddress = scanner.nextLine().trim();
+                        if (!newAddress.isEmpty()) {
+                            this.setAddress(newAddress);
+                            System.out.println("Address updated successfully.");
+                        }
+                        break;
+
+                    case "3":
+                        System.out.println("Current phone number: " + this.getPhoneNumber());
+                        System.out.println("Enter new phone number: ");
+                        String newPhone = scanner.nextLine().trim();
+                        if (!newPhone.isEmpty()) {
+                            this.setPhoneNumber(newPhone);
+                            System.out.println("Phone number updated successfully.");
+                        }
+                        break;
+
+                    case "4":
+                        editPatronSpecificInfo(scanner);
+                        break;
+
+                    case "5":
+                        return;
+
+                    default:
+                        System.out.println("Invalid choice. Please try again.");
+                }
+            } catch (Exception e) {
+                System.out.println("Error processing input. Please try again.");
+            }
+        }
+    }
 }

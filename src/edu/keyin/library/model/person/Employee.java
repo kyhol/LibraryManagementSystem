@@ -1,5 +1,7 @@
 package edu.keyin.library.model.person;
 
+import java.util.Scanner;
+
 public class Employee extends Patron {
     private String employeeId;
 
@@ -23,5 +25,16 @@ public class Employee extends Patron {
                 ", employeeId='" + employeeId + '\'' +
                 ", borrowed items=" + getBorrowedItems().size() +
                 '}';
+    }
+
+    @Override
+    public void editPatronSpecificInfo(Scanner scanner) {
+        System.out.println("Current employee ID: " + this.getEmployeeId());
+        System.out.println("Enter new employee ID: ");
+        String newEmployeeId = scanner.nextLine().trim();
+        if (!newEmployeeId.isEmpty()) {
+            this.setEmployeeId(newEmployeeId);
+            System.out.println("Employee ID updated successfully.");
+        }
     }
 }
