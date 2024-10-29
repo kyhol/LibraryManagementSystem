@@ -49,6 +49,8 @@ public class LibraryDataInitializer {
                 "William Morrow", 2, author4, "Printed");
         Book book5 = new Book("B005", "The Handmaid's Tale", "9780771008139",
                 "McClelland & Stewart", 6, author5, "Electronic");
+        Book book6 = new Book("B006", "Harry Potter and the Philosopher's Stone", "9780747532699",
+                "Bloomsbury", 5, author1, "Printed");
 
         // Create Periodicals
         Periodical periodical1 = new Periodical("P001", "Scientific American", "0036-8733",
