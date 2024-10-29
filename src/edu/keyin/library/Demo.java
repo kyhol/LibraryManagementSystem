@@ -1,72 +1,205 @@
 package edu.keyin.library;
-import java.util.Scanner;
-import edu.keyin.library.management.Library;
 
+import edu.keyin.library.management.Library;
+import edu.keyin.library.model.person.Author;
+
+import java.util.Scanner;
 
 public class Demo {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        Library library = new Library();  // This creates the library instance
-        int choice;
+    private final Library library;
+    private final Scanner scanner;
 
-        do {
-            System.out.println("Welcome to the Library Management System");
-            // there are more options needed for the project.
-            System.out.println("1. Add Library Item");
-            System.out.println("2. Edit Library Item");
-            System.out.println("3. Delete Library Item");
-            System.out.println("4. Borrow Library Item");
-            System.out.println("5. Return Library Item");
-            System.out.println("6. Exit");
-            System.out.print("Enter your choice (1-6): ");
-            choice = scanner.nextInt();
+    public Demo() {
+        this.library = new Library();
+        this.scanner = new Scanner(System.in);
+    }
+
+    public void start() {
+        while (true) {
+            System.out.println("\n=== Library Management System ===");
+            System.out.println("1. Enter as Patron");
+            System.out.println("2. Enter as Librarian");
+            System.out.println("3. Exit");
+            System.out.println("Enter your choice: ");
+
+            String choice = scanner.nextLine().trim();
 
             switch (choice) {
-                case 1:
-                    System.out.println("Adding a new library item...");
-                    // Add logic to add a library item
-//                    System.out.println("Enter the type of Library item?: ");
-//                    String itemType = scanner.nextLine();
-//
-//                    System.out.print("Enter Title: ");
-//                    String title = scanner.nextLine();
-//                    System.out.print("Enter ISBN: ");
-//                    String ISBN = scanner.nextLine();
-//                    System.out.print("Enter publisher: ");
-//                    String publisher = scanner.nextLine();
-//                    System.out.print("Enter total copies: ");
-//                    int totalCopies = scanner.nextInt();
-//                    System.out.print("Enter available copies: ");
-//                    int availableCopies = scanner.nextInt();
-//                    scanner.nextLine();
-//                    LibraryItem libraryItem = new LibraryItem(title,ISBN,publisher,availableCopies)
+                case "1":
+                    patronMenu();
+                    break;
+                case "2":
+                    librarianMenu();
+                    break;
+                case "3":
+                    System.out.println("Thank you for using the Library Management System!");
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
 
+    private void patronMenu() {
+        while (true) {
+            System.out.println("\n=== Patron Menu ===");
+            System.out.println("1. Search by Author");
+            System.out.println("2. Search by Title");
+            System.out.println("3. Search by ISBN");
+            System.out.println("4. Borrow Item");
+            System.out.println("5. Return Item");
+            System.out.println("6. Return to Main Menu");
+            System.out.println("Enter your choice: ");
+
+            String choice = scanner.nextLine().trim();
+
+            switch (choice) {
+                case "1":
+                    library.worksByAuthor();
                     break;
-                case 2:
-                    System.out.println("Editing an existing library item...");
-                    // Add logic to edit a library item
+                case "2":
+                    library.searchByTitle();
                     break;
-                case 3:
-                    System.out.println("Deleting a library item...");
-                    library.deleteLibraryItem();
+                case "3":
+                    library.searchByIsbn();
                     break;
-                case 4:
-                    System.out.println("Borrowing a library item...");
-                    // Add logic to borrow a library item
+                case "4":
+                    library.borrowLibraryItem();
                     break;
-                case 5:
-                    System.out.println("Returning a library item...");
+                case "5":
                     library.returnLibraryItem();
                     break;
-                case 6:
-                    System.out.println("Exiting the system. Goodbye!");
-                    break;
+                case "6":
+                    return;
                 default:
-                    System.out.println("Invalid choice. Please enter a number between 1 and 6.");
+                    System.out.println("Invalid choice. Please try again.");
             }
-        } while (choice != 6);
+        }
+    }
 
-        scanner.close();
+    private void librarianMenu() {
+        while (true) {
+            System.out.println("\n=== Librarian Menu ===");
+            System.out.println("1. Search Operations");
+            System.out.println("2. Author Management");
+            System.out.println("3. Item Management");
+            System.out.println("4. Patron Management");
+            System.out.println("5. Return to Main Menu");
+            System.out.println("Enter your choice: ");
+
+            String choice = scanner.nextLine().trim();
+
+            switch (choice) {
+                case "1":
+                    searchMenu();
+                    break;
+                case "2":
+                    authorMenu();
+                    break;
+                case "3":
+                    itemMenu();
+                    break;
+                case "4":
+                    patronMenu();
+                    break;
+                case "5":
+                    return;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+
+    private void searchMenu() {
+        while (true) {
+            System.out.println("\n=== Search Menu ===");
+            System.out.println("1. Search by Author");
+            System.out.println("2. Search by Title");
+            System.out.println("3. Search by ISBN");
+            System.out.println("4. Return to Librarian Menu");
+            System.out.println("Enter your choice: ");
+
+            String choice = scanner.nextLine().trim();
+
+            switch (choice) {
+                case "1":
+                    library.worksByAuthor();
+                    break;
+                case "2":
+                    library.searchByTitle();
+                    break;
+                case "3":
+                    library.searchByIsbn();
+                    break;
+                case "4":
+                    return;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+
+    private void authorMenu() {
+        while (true) {
+            System.out.println("\n=== Author Management ===");
+            System.out.println("1. Add Author");
+            System.out.println("2. Edit Author");
+            System.out.println("3. Delete Author");
+            System.out.println("4. Return to Librarian Menu");
+            System.out.println("Enter your choice: ");
+
+            String choice = scanner.nextLine().trim();
+
+            switch (choice) {
+                case "1":
+                    library.addAuthor();
+                    break;
+                case "2":
+                    library.editAuthor();
+                    break;
+                case "3":
+                    library.deleteAuthor();
+                    break;
+                case "4":
+                    return;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+
+    private void itemMenu() {
+        while (true) {
+            System.out.println("\n=== Item Management ===");
+            System.out.println("1. Add Item");
+            System.out.println("2. Edit Item");
+            System.out.println("3. Delete Item");
+            System.out.println("4. Return to Librarian Menu");
+            System.out.println("Enter your choice: ");
+
+            String choice = scanner.nextLine().trim();
+
+            switch (choice) {
+                case "1":
+                    library.addItem();
+                    break;
+                case "2":
+                    library.editItem();
+                    break;
+                case "3":
+                    library.deleteLibraryItem();
+                    break;
+                case "4":
+                    return;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Demo demo = new Demo();
+        demo.start();
     }
 }
-
