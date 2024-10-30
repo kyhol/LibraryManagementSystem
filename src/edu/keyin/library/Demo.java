@@ -6,15 +6,26 @@ import edu.keyin.library.model.person.Patron;
 
 import java.util.Scanner;
 
+/**
+ * Main demo class that provides the user interface for the Library Management System.
+ * Handles menu navigation and user interactions.
+ */
 public class Demo {
     private final Library library;
     private final Scanner scanner;
 
+    /**
+     * Initializes the demo with a new Library instance and Scanner.
+     */
     public Demo() {
         this.library = new Library();
         this.scanner = new Scanner(System.in);
     }
 
+    /**
+     * Starts the main application loop.
+     * Presents main menu options for patron and librarian access.
+     */
     public void start() {
         while (true) {
             System.out.println("\n=== Library Management System ===");
@@ -42,6 +53,10 @@ public class Demo {
         }
     }
 
+    /**
+     * Handles patron-specific operations menu.
+     * Includes search, borrow, and return functionalities.
+     */
     private void patronMenu() {
         while (true) {
             System.out.println("\n=== Patron Menu ===");
@@ -79,6 +94,10 @@ public class Demo {
         }
     }
 
+    /**
+     * Handles librarian operations menu.
+     * Provides access to search, author, item, and patron management.
+     */
     private void librarianMenu() {
         while (true) {
             System.out.println("\n=== Librarian Menu ===");
@@ -112,6 +131,10 @@ public class Demo {
         }
     }
 
+    /**
+     * Handles search operations menu.
+     * Provides various search options for library items.
+     */
     private void searchMenu() {
         while (true) {
             System.out.println("\n=== Search Menu ===");
@@ -141,6 +164,10 @@ public class Demo {
         }
     }
 
+    /**
+     * Handles author management menu.
+     * Provides options for adding, editing, and deleting authors.
+     */
     private void authorMenu() {
         while (true) {
             System.out.println("\n=== Author Management ===");
@@ -170,6 +197,10 @@ public class Demo {
         }
     }
 
+    /**
+     * Handles item management menu.
+     * Provides options for adding, editing, and deleting library items.
+     */
     private void itemMenu() {
         while (true) {
             System.out.println("\n=== Item Management ===");
@@ -199,6 +230,10 @@ public class Demo {
         }
     }
 
+    /**
+     * Handles patron management menu.
+     * Provides options for adding, editing, and deleting patrons.
+     */
     private void patronMgmtMenu() {
         while (true) {
             System.out.println("\n=== Patron Management ===");
@@ -228,6 +263,10 @@ public class Demo {
         }
     }
 
+    /**
+     * Main method to start the application.
+     * @param args Command line arguments (not used)
+     */
     public static void main(String[] args) {
         Demo demo = new Demo();
         demo.start();
