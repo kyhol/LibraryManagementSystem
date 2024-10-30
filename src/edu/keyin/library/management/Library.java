@@ -10,7 +10,10 @@ import edu.keyin.library.model.person.Patron;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
+/**
+ * Manages the core functionality of a library system including item management,
+ * patron management, and circulation operations.
+ */
 public class Library {
     private final LibraryDataInitializer dataInitializer;
     private final Scanner scanner;
@@ -20,7 +23,11 @@ public class Library {
         this.scanner = new Scanner(System.in);
     }
 
-    // Method to search by ISBN
+
+    /**
+     * Searches for a library item by ISBN.
+     * @return The found LibraryItem or null if not found
+     */
     public LibraryItem searchByIsbn() {
         System.out.println("\nSearch by ISBN");
         System.out.println("Enter ISBN (or 'exit' to return to main menu): ");
@@ -48,7 +55,10 @@ public class Library {
 
         return null;
     }
-
+    /**
+     * Searches for all works by a specific author.
+     * @return ArrayList of LibraryItems by the specified author
+     */
     public ArrayList<LibraryItem> worksByAuthor() {
         while (true) {
             System.out.println("\nSearch for author's works");
@@ -95,10 +105,19 @@ public class Library {
         }
     }
 
+    /**
+     * Adds a library item to a patron's borrowed items.
+     * @param patron The patron borrowing the item
+     * @param libraryItem The item to be borrowed
+     */
+
     public void addItem(Patron patron, LibraryItem libraryItem) {
         patron.borrowItem(libraryItem);
     }
-
+    /**
+     * Processes the return of a library item from a patron.
+     * Updates the item's availability and removes it from patron's borrowed items.
+     */
     public void returnLibraryItem() {
         while (true) {
             System.out.println("\nReturn Library Item");
@@ -169,6 +188,10 @@ public class Library {
         }
     }
 
+    /**
+     * Deletes a library item from the system.
+     * Checks if item is currently borrowed before deletion.
+     */
     public void deleteLibraryItem() {
         while (true) {
             System.out.println("\nDelete Library Item");
@@ -228,7 +251,10 @@ public class Library {
         }
     }
 
-    // Method to search by title
+    /**
+     * Searches for library items by title.
+     * @return ArrayList of LibraryItems matching the search criteria
+     */
     public ArrayList<LibraryItem> searchByTitle() {
         System.out.println("\nSearch by Title");
         System.out.println("Enter title (or 'exit' to return to main menu): ");
@@ -258,6 +284,10 @@ public class Library {
         return foundItems;
     }
 
+    /**
+     * Adds a new item to the library collection.
+     * Supports adding both books and periodicals.
+     */
     public void addItem() {
         System.out.println("\nAdd New Library Item");
         System.out.println("Select item type:");
@@ -329,7 +359,10 @@ public class Library {
         System.out.println("Item added successfully!");
     }
 
-    // Method to edit an item
+    /**
+     * Allows editing of an existing library item's details.
+     * Includes title, ISBN, publisher, copies, and type modifications.
+     */
     public void editItem() {
         System.out.println("\nEdit Library Item");
         System.out.println("Enter item ID: ");
@@ -417,8 +450,10 @@ public class Library {
             }
         }
     }
-
-    // Method to borrow a library item
+    /**
+     * Processes a patron's request to borrow a library item.
+     * Checks item availability and updates inventory accordingly.
+     */
     public void borrowLibraryItem() {
         System.out.println("\nBorrow Library Item");
         System.out.println("Enter patron name: ");
@@ -465,7 +500,11 @@ public class Library {
         }
     }
 
-    // Method to add an author
+
+    /**
+     * Adds a new author to the library system.
+     * Creates author record with provided details.
+     */
     public void addAuthor() {
         System.out.println("\nAdd New Author");
         Author newAuthor = Author.createAuthorFromUserInput(scanner);
@@ -473,7 +512,9 @@ public class Library {
         System.out.println("Author added successfully: " + newAuthor.getName());
     }
 
-    // Method to edit author
+    /**
+     * Allows modification of an existing author's information.
+     */
     public void editAuthor() {
         while (true) {
             System.out.println("\nEdit Author");
@@ -507,7 +548,10 @@ public class Library {
         }
     }
 
-    // Method to delete an author - give the authors name a NULL value instead of deleting the collection of their work
+    /**
+     * Deletes an author from the system.
+     * Sets author reference to null for associated works instead of deleting them.
+     */
     public void deleteAuthor() {
         while (true) {
             System.out.println("\nDelete Author");
@@ -552,7 +596,10 @@ public class Library {
             }
         }
     }
-    //Method to add a Patron
+    /**
+     * Adds a new patron to the library system.
+     * Creates patron record with provided details.
+     */
     public void addPatron() {
         System.out.println("\nAdd New Patron");
         Patron newPatron = Patron.createPatronFromUserInput(scanner);
@@ -560,7 +607,10 @@ public class Library {
         System.out.println("Patron added successfully: " + newPatron.getName());
     }
 
-    // Method to edit author
+
+    /**
+     * Allows modification of an existing patron's information.
+     */
     public void editPatron() {
         while (true) {
             System.out.println("\nEdit Patron");
@@ -594,7 +644,10 @@ public class Library {
         }
     }
 
-    //Method to delete a Patron
+    /**
+     * Deletes a patron from the system.
+     * Handles return of any borrowed items before deletion.
+     */
     public void deletePatron() {
         while (true) {
             System.out.println("\nDelete Patron");
