@@ -10,39 +10,68 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+/**
+ * Represents an author in the library system.
+ * Manages author information and their works.
+ */
 public class Author {
     private String name;
     private LocalDate birthdate;
     private final ArrayList<LibraryItem> listOfWorks;
 
-    // Constructor
+    /**
+     * Constructs a new Author with name and birthdate.
+     * @param name Author's name
+     * @param birthdate Author's date of birth
+     */
     public Author(String name, LocalDate birthdate) {
         this.name = name;
         this.birthdate = birthdate;
         this.listOfWorks = new ArrayList<>();
     }
 
+    /**
+     * Adds a work to author's list if not already present.
+     * @param item Library item to add
+     */
     public void addWork(LibraryItem item) {
         if (!listOfWorks.contains(item)) {
             listOfWorks.add(item);
         }
     }
 
+    /**
+     * Removes a work from author's list.
+     * @param item Library item to remove
+     */
     public void removeWork(LibraryItem item) {
         listOfWorks.remove(item);
     }
 
+    /**
+     * Returns a copy of author's works list.
+     * @return ArrayList of author's works
+     */
     public ArrayList<LibraryItem> getListOfWorks() {
         return new ArrayList<>(listOfWorks);
     }
 
-    // New search methods
+    /**
+     * Searches works by title (case-insensitive).
+     * @param title Title to search for
+     * @return List of matching works
+     */
     public List<LibraryItem> searchWorksByTitle(String title) {
         return listOfWorks.stream()
                 .filter(item -> item.getTitle().toLowerCase().contains(title.toLowerCase()))
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Searches works by ISBN.
+     * @param isbn ISBN to search for
+     * @return Matching work or null if not found
+     */
     public LibraryItem searchWorkByIsbn(String isbn) {
         return listOfWorks.stream()
                 .filter(item -> item.getIsbn().equals(isbn))
@@ -50,14 +79,22 @@ public class Author {
                 .orElse(null);
     }
 
-    // Method to create an Author from user input
+    /**
+     * Creates an Author instance from user input.
+     * @param scanner Scanner for reading input
+     * @return New Author instance
+     */
     public static Author createAuthorFromUserInput(Scanner scanner) {
         String name = readName(scanner);
         LocalDate birthdate = readBirthdate(scanner);
         return new Author(name, birthdate);
     }
 
-    // Helper method to read name
+    /**
+     * Reads and validates author name from input.
+     * @param scanner Scanner for reading input
+     * @return Valid author name
+     */
     private static String readName(Scanner scanner) {
         String name;
         while (true) {
@@ -72,7 +109,11 @@ public class Author {
         }
     }
 
-    // Helper method to read birthdate (uses LocalDate)
+    /**
+     * Reads and validates author birthdate from input.
+     * @param scanner Scanner for reading input
+     * @return Valid LocalDate for birthdate
+     */
     private static LocalDate readBirthdate(Scanner scanner) {
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         while (true) {
@@ -93,7 +134,10 @@ public class Author {
         }
     }
 
-    // Method to edit an author's info
+    /**
+     * Interactive method to edit author information.
+     * @param scanner Scanner for reading input
+     */
     public void editAuthorInfo(Scanner scanner) {
         while (true) {
             System.out.println("\nEdit Author Information");
@@ -106,45 +150,53 @@ public class Author {
             switch (choice) {
                 case "1":
                     System.out.println("Current name: " + this.name);
-                    String newName = readName(scanner);  // Using your existing readName method
-                    this.setName(newName);
+                    this.setName(readName(scanner));
                     System.out.println("Name updated successfully.");
                     break;
-
                 case "2":
                     System.out.println("Current birthdate: " + this.birthdate);
-                    LocalDate newDate = readBirthdate(scanner);  // Using your existing readBirthdate method
-                    this.setBirthdate(newDate);
+                    this.setBirthdate(readBirthdate(scanner));
                     System.out.println("Birthdate updated successfully.");
                     break;
-
                 case "3":
                     return;
-
                 default:
                     System.out.println("Invalid choice. Please try again.");
             }
         }
     }
 
-    // Getters and Setters
+    /**
+     * @return Author's name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * @param name New author name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * @return Author's birthdate
+     */
     public LocalDate getBirthdate() {
         return birthdate;
     }
 
+    /**
+     * @param birthdate New author birthdate
+     */
     public void setBirthdate(LocalDate birthdate) {
         this.birthdate = birthdate;
     }
 
-    // toString method to represent the Author object
+    /**
+     * @return String representation of Author object
+     */
     @Override
     public String toString() {
         return "Author{" +
