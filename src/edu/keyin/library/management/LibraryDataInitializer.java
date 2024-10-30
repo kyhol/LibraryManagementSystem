@@ -12,11 +12,23 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Initializes and manages sample data for the library system.
+ * Creates and maintains lists of authors, library items, and patrons.
+ */
 public class LibraryDataInitializer {
+    /** List of authors in the library system */
     private List<Author> authors;
+
+    /** List of items (books and periodicals) in the library */
     private List<LibraryItem> items;
+
+    /** List of patrons (students and employees) registered in the library */
     private List<Patron> patrons;
 
+    /**
+     * Constructor initializes empty lists and populates them with sample data.
+     */
     public LibraryDataInitializer() {
         authors = new ArrayList<>();
         items = new ArrayList<>();
@@ -24,6 +36,10 @@ public class LibraryDataInitializer {
         initializeData();
     }
 
+    /**
+     * Initializes the library with sample data including authors, books, periodicals,
+     * and patrons. Also sets up initial borrowing relationships.
+     */
     private void initializeData() {
         // Create Authors
         Author author1 = new Author("J.K. Rowling", LocalDate.of(1965, 7, 31));
@@ -99,15 +115,26 @@ public class LibraryDataInitializer {
         patrons.add(employee2);
     }
 
-    // Getters for the initialized data
+    /**
+     * Gets a copy of the authors list to prevent direct modification of the original list.
+     * @return A new ArrayList containing all authors
+     */
     public List<Author> getAuthors() {
         return new ArrayList<>(authors);
     }
 
+    /**
+     * Gets a copy of the library items list to prevent direct modification of the original list.
+     * @return A new ArrayList containing all library items
+     */
     public List<LibraryItem> getItems() {
         return new ArrayList<>(items);
     }
 
+    /**
+     * Gets a copy of the patrons list to prevent direct modification of the original list.
+     * @return A new ArrayList containing all patrons
+     */
     public List<Patron> getPatrons() {
         return new ArrayList<>(patrons);
     }
