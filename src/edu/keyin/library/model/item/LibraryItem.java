@@ -2,6 +2,10 @@ package edu.keyin.library.model.item;
 
 import edu.keyin.library.model.person.Author;
 
+/**
+ * Abstract base class for all library items.
+ * Provides common attributes and functionality for books and periodicals.
+ */
 public abstract class LibraryItem {
     private String id;
     private String title;
@@ -10,6 +14,9 @@ public abstract class LibraryItem {
     private int numberOfCopies;
     private Author author;
 
+    /**
+     * Enumeration representing the possible status of a library item.
+     */
     public enum Status {
         AVAILABLE("Available"),
         CHECKED_OUT("Checked Out"),
@@ -17,15 +24,26 @@ public abstract class LibraryItem {
 
         private final String value;
 
+        /**
+         * @param value String representation of the status
+         */
         Status(String value) {
             this.value = value;
         }
 
+        /**
+         * @return String representation of the status
+         */
         public String getValue() {
             return value;
         }
 
-        // Helper method to convert string to enum
+        /**
+         * Converts string to Status enum value.
+         * @param text Status string to convert
+         * @return Corresponding Status enum value
+         * @throws IllegalArgumentException if text doesn't match any status
+         */
         public static Status fromString(String text) {
             for (Status status: Status.values()) {
                 if (status.value.equalsIgnoreCase(text)) {
@@ -36,72 +54,122 @@ public abstract class LibraryItem {
         }
     }
 
-        private Status status;
+    private Status status;
 
-        public LibraryItem(String id, String title, String isbn, String publisher,
-                           int numberOfCopies, Author author) {
-            this.id = id;
-            this.title = title;
-            this.isbn = isbn;
-            this.publisher = publisher;
-            this.numberOfCopies = numberOfCopies;
-            this.author = author;
-        }
+    /**
+     * Constructs a new LibraryItem with specified attributes.
+     * @param id Unique identifier
+     * @param title Item title
+     * @param isbn ISBN number
+     * @param publisher Publisher name
+     * @param numberOfCopies Number of available copies
+     * @param author Item's author
+     */
+    public LibraryItem(String id, String title, String isbn, String publisher,
+                       int numberOfCopies, Author author) {
+        this.id = id;
+        this.title = title;
+        this.isbn = isbn;
+        this.publisher = publisher;
+        this.numberOfCopies = numberOfCopies;
+        this.author = author;
+    }
 
-        // Getters and Setters
-        public String getId() {
-            return id;
-        }
+    /**
+     * @return Item's unique identifier
+     */
+    public String getId() {
+        return id;
+    }
 
-        public void setId(String id) {
-            this.id = id;
-        }
+    /**
+     * @param id New unique identifier
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
 
-        public String getTitle() {
-            return title;
-        }
+    /**
+     * @return Item's title
+     */
+    public String getTitle() {
+        return title;
+    }
 
-        public void setTitle(String title) {
-            this.title = title;
-        }
+    /**
+     * @param title New title
+     */
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-        public String getIsbn() {
-            return isbn;
-        }
+    /**
+     * @return Item's ISBN
+     */
+    public String getIsbn() {
+        return isbn;
+    }
 
-        public void setIsbn(String isbn) {
-            this.isbn = isbn;
-        }
+    /**
+     * @param isbn New ISBN
+     */
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
 
-        public String getPublisher() {
-            return publisher;
-        }
+    /**
+     * @return Item's publisher
+     */
+    public String getPublisher() {
+        return publisher;
+    }
 
-        public void setPublisher(String publisher) {
-            this.publisher = publisher;
-        }
+    /**
+     * @param publisher New publisher
+     */
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
 
-        public int getNumberOfCopies() {
-            return numberOfCopies;
-        }
+    /**
+     * @return Number of available copies
+     */
+    public int getNumberOfCopies() {
+        return numberOfCopies;
+    }
 
-        public void setNumberOfCopies(int numberOfCopies) {
-            this.numberOfCopies = numberOfCopies;
-        }
+    /**
+     * @param numberOfCopies New number of copies
+     */
+    public void setNumberOfCopies(int numberOfCopies) {
+        this.numberOfCopies = numberOfCopies;
+    }
 
-        public Author getAuthor() {
-            return author;
-        }
+    /**
+     * @return Item's author
+     */
+    public Author getAuthor() {
+        return author;
+    }
 
-        public void setAuthor(Author author) {
-            this.author = author;
-        }
+    /**
+     * @param author New author
+     */
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
 
-        public String getStatus() {
-            return status.getValue();
-        }
+    /**
+     * @return Current status as string
+     */
+    public String getStatus() {
+        return status.getValue();
+    }
 
-        public void setStatus(Status status) {
-            this.status = status;
+    /**
+     * @param status New status
+     */
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }
