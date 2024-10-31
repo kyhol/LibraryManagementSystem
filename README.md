@@ -126,6 +126,10 @@ Database Structure:
 
 <img width="966" alt="Screenshot 2024-10-31 at 10 29 49 AM" src="https://github.com/user-attachments/assets/6d8d71f2-a524-4079-b94c-b3ed0250c61a">
 
+Video Walkthrough:
+
+<iframe src="https://keyincollege289-my.sharepoint.com/personal/brian_janes_keyin_com/_layouts/15/embed.aspx?UniqueId=5304d21a-5ad9-4701-abe1-93358d20e726&embed=%7B%22ust%22%3Atrue%2C%22hv%22%3A%22CopyEmbedCode%22%7D&referrer=StreamWebApp&referrerScenario=EmbedDialog.Create" width="640" height="360" frameborder="0" scrolling="no" allowfullscreen title="Call with Bradley and 1 other-20241031_114721-Meeting Recording.mp4"></iframe>
+
 
 
 
