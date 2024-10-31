@@ -1,5 +1,7 @@
-User Manual: Library Management System
+Library Management System
 By Brian Janes, Kyle Hollett, Brad Ayers
+
+--User Manual--
 
 Thank you for using the Library Management System. This program provides two main modes of access: Patron and Librarian. Each mode allows different functionalities to manage library items, authors, and patron actions.
 
@@ -9,7 +11,8 @@ Thank you for using the Library Management System. This program provides two mai
 
 ---
 
-Image 1
+<img width="298" alt="Screenshot 2024-10-31 at 6 53 59 AM" src="https://github.com/user-attachments/assets/f1852d0c-816c-433c-95c1-8c88a506fdb0">
+
 
 ---
 
