@@ -1,6 +1,7 @@
 package edu.keyin.library;
 
 import edu.keyin.library.management.Library;
+import edu.keyin.library.management.LibraryDataInitializer;
 import edu.keyin.library.model.person.Author;
 import edu.keyin.library.model.person.Patron;
 
@@ -48,9 +49,11 @@ public class Demo {
             System.out.println("1. Search by Author");
             System.out.println("2. Search by Title");
             System.out.println("3. Search by ISBN");
-            System.out.println("4. Borrow Item");
-            System.out.println("5. Return Item");
-            System.out.println("6. Return to Main Menu");
+            System.out.println("4. List all Authors");
+            System.out.println("5. List all Items");
+            System.out.println("6. Borrow Item");
+            System.out.println("7. Return Item");
+            System.out.println("8. Return to Main Menu");
             System.out.println("Enter your choice: ");
 
             String choice = scanner.nextLine().trim();
@@ -66,12 +69,18 @@ public class Demo {
                     library.searchByIsbn();
                     break;
                 case "4":
-                    library.borrowLibraryItem();
+                    library.authorList();
                     break;
                 case "5":
-                    library.returnLibraryItem();
+                    library.itemList();
                     break;
                 case "6":
+                    library.borrowLibraryItem();
+                    break;
+                case "7":
+                    library.returnLibraryItem();
+                    break;
+                case "8":
                     return;
                 default:
                     System.out.println("Invalid choice. Please try again.");
@@ -86,7 +95,10 @@ public class Demo {
             System.out.println("2. Author Management");
             System.out.println("3. Item Management");
             System.out.println("4. Patron Management");
-            System.out.println("5. Return to Main Menu");
+            System.out.println("5. List all Authors");
+            System.out.println("6. List all Items");
+            System.out.println("7. List all Patrons");
+            System.out.println("8. Return to Main Menu");
             System.out.println("Enter your choice: ");
 
             String choice = scanner.nextLine().trim();
@@ -105,6 +117,14 @@ public class Demo {
                     patronMgmtMenu();
                     break;
                 case "5":
+                    library.authorList();
+                    break;
+                case "6":
+                    library.itemList();
+                    break;
+                case "7":
+                    library.patronList();
+                case "8":
                     return;
                 default:
                     System.out.println("Invalid choice. Please try again.");

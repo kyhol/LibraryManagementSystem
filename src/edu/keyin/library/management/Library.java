@@ -639,4 +639,25 @@ public class Library {
         }
     }
 
+    public void authorList() {
+        System.out.println("Available authors:");
+        for (Author author : dataInitializer.getAuthors()) {
+            System.out.println("- " + author.getName());
+        }
     }
+
+    public void itemList() {
+        System.out.println("Available items:");
+        for (LibraryItem item : dataInitializer.getItems()) {
+            System.out.println("- " + item.getTitle());
+        }
+    }
+
+    public void patronList() {
+        System.out.println("Available patrons:");
+        for (Patron patron : dataInitializer.getPatrons()) {
+            System.out.println("- " + patron.getName());
+        };
+    }
+
+}
