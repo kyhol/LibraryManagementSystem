@@ -128,8 +128,4 @@ Database Structure:
 
 Video Walkthrough:
 
-<iframe src="https://keyincollege289-my.sharepoint.com/personal/brian_janes_keyin_com/_layouts/15/embed.aspx?UniqueId=5304d21a-5ad9-4701-abe1-93358d20e726&embed=%7B%22ust%22%3Atrue%2C%22hv%22%3A%22CopyEmbedCode%22%7D&referrer=StreamWebApp&referrerScenario=EmbedDialog.Create" width="640" height="360" frameborder="0" scrolling="no" allowfullscreen title="Call with Bradley and 1 other-20241031_114721-Meeting Recording.mp4"></iframe>
-
-
-
-
+https://keyincollege289-my.sharepoint.com/:v:/g/personal/brian_janes_keyin_com/ERrSBFPZWgFHq-GTNY0g5yYBi_PcaLyypHol93cwZMFakQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=mvmfgl
