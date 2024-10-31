@@ -21,9 +21,11 @@ Patron Menu Options:
 - 1. Search by Author: Allows patrons to search for items by entering an author's name.
 - 2. Search by Title: Allows patrons to search for items by entering part or all of a title.
 - 3. Search by ISBN: Allows patrons to search for items by entering an ISBN.
-- 4. Borrow Item: Patrons can borrow items if they are available.
-- 5. Return Item: Patrons can return borrowed items to the library.
-- 6. Return to Main Menu: Returns to the Main Menu.
+- 4. List all Authors
+- 5. List all Items
+- 6. Borrow Item: Patrons can borrow items if they are available.
+- 7. Return Item: Patrons can return borrowed items to the library.
+- 8. Return to Main Menu: Returns to the Main Menu.
 
 Search Operations:
 
@@ -58,7 +60,7 @@ The search operations work exactly the same as those in Patron Mode. Librarians 
 
 <img width="246" alt="Screenshot 2024-10-31 at 7 21 25 AM" src="https://github.com/user-attachments/assets/067cfc7b-4813-46c2-84fa-9b8932fe6fd0">
 
-Add:
+**Add:**
 
 -Author
 
@@ -72,7 +74,7 @@ Add:
 
 <img width="421" alt="Screenshot 2024-10-31 at 7 34 29 AM" src="https://github.com/user-attachments/assets/cf181266-c24f-48d0-810b-b4071e6aeeba">
 
-Edit:
+**Edit:**
 
 --Author:
 
@@ -86,7 +88,7 @@ Edit:
 
 <img width="424" alt="Screenshot 2024-10-31 at 7 41 17 AM" src="https://github.com/user-attachments/assets/c4d4eafd-50f0-4f5c-b195-375cc4ca265e">
 
-Delete:
+**Delete:**
 
 --Author
 
