@@ -120,4 +120,12 @@ Notes:
 
 Directory structure:
 
+<img width="461" alt="Screenshot 2024-10-31 at 10 05 07 AM" src="https://github.com/user-attachments/assets/dcaebc77-c69e-477a-be65-8d6d08934da8">
+
+Database Structure:
+
+<img width="966" alt="Screenshot 2024-10-31 at 10 29 49 AM" src="https://github.com/user-attachments/assets/6d8d71f2-a524-4079-b94c-b3ed0250c61a">
+
+
+
 
