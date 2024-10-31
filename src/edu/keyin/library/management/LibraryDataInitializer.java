@@ -101,14 +101,14 @@ public class LibraryDataInitializer {
 
     // Getters for the initialized data
     public List<Author> getAuthors() {
-        return List.copyOf(authors);
+        return this.authors;
     }
 
     public List<LibraryItem> getItems() {
-        return List.copyOf(items);
+        return this.items;
     }
 
     public List<Patron> getPatrons() {
-        return List.copyOf(patrons);
+        return this.patrons;
     }
 }
