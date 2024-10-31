@@ -1,7 +1,7 @@
 Library Management System
 By Brian Janes, Kyle Hollett, Brad Ayers
 
---User Manual--
+**--User Manual--**
 
 Thank you for using the Library Management System. This program provides two main modes of access: Patron and Librarian. Each mode allows different functionalities to manage library items, authors, and patron actions.
 
@@ -35,6 +35,8 @@ The first three options here are search operations. After choosing a search meth
 
 Typing 'exit' here will also bring you back to the menu.
 
+The list functions simply list each object in the chosen category.
+
 Patrons also have the option to borrow and return items.
 
 Borrow:
@@ -54,9 +56,12 @@ Librarian Menu Options:
 - 2. Author Management: Allows staff to add, edit, and delete authors.
 - 3. Item Management: Allows staff to add, edit, and delete library items.
 - 4. Patron Management: Allows staff to add, edit, and delete patrons.
-- 5. Return to Main Menu: Returns to the Main Menu.
+- 5. List all Authors
+- 6. List all Items
+- 7. List all Patrons
+- 8. Return to Main Menu: Returns to the Main Menu.
 
-The search operations work exactly the same as those in Patron Mode. Librarians also have the option to add, edit, and delete authors, library items, and patrons.
+The search and list operations work exactly the same as those in Patron Mode. Librarians also have the option to add, edit, and delete authors, library items, and patrons.
 
 <img width="246" alt="Screenshot 2024-10-31 at 7 21 25 AM" src="https://github.com/user-attachments/assets/067cfc7b-4813-46c2-84fa-9b8932fe6fd0">
 
@@ -110,3 +115,9 @@ Exiting the Application
 Notes:
 - If an invalid input is provided at any stage, the system will display an error message and prompt the user to try again. 
 - Each submenu allows returning to the previous menu, helping users navigate back to the Main Menu easily.
+
+**--Development Docs--**
+
+Directory structure:
+
+
