@@ -120,7 +120,7 @@ public class LibraryDataInitializer {
      * @return A new ArrayList containing all authors
      */
     public List<Author> getAuthors() {
-        return List.copyOf(authors);
+        return this.authors;
     }
 
     /**
@@ -128,7 +128,7 @@ public class LibraryDataInitializer {
      * @return A new ArrayList containing all library items
      */
     public List<LibraryItem> getItems() {
-        return List.copyOf(items);
+        return this.items;
     }
 
     /**
@@ -136,6 +136,6 @@ public class LibraryDataInitializer {
      * @return A new ArrayList containing all patrons
      */
     public List<Patron> getPatrons() {
-        return List.copyOf(patrons);
+        return this.patrons;
     }
 }
