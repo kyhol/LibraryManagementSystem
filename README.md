@@ -13,10 +13,9 @@ Thank you for using the Library Management System. This program provides two mai
 
 <img width="298" alt="Screenshot 2024-10-31 at 6 53 59 AM" src="https://github.com/user-attachments/assets/f1852d0c-816c-433c-95c1-8c88a506fdb0">
 
-
 ---
 
-2. Patron Mode
+Option 1: Patron Mode
 
 Patron Menu Options:
 - 1. Search by Author: Allows patrons to search for items by entering an author's name.
@@ -26,9 +25,27 @@ Patron Menu Options:
 - 5. Return Item: Patrons can return borrowed items to the library.
 - 6. Return to Main Menu: Returns to the Main Menu.
 
+Search Operations:
+
+The first three options here are search operations. After choosing a search method, you will be prompted to enter the field chosen to search by:
+
+<img width="386" alt="Screenshot 2024-10-31 at 7 01 16 AM" src="https://github.com/user-attachments/assets/59132830-cb69-4b2a-a098-aed6d01a3895">
+
+Typing 'exit' here will also bring you back to the menu.
+
+Patrons also have the option to borrow and return items.
+
+Borrow:
+
+<img width="347" alt="Screenshot 2024-10-31 at 7 14 21 AM" src="https://github.com/user-attachments/assets/5d27e14e-51ba-4b41-9c24-997dede4cab5">
+
+Return:
+
+<img width="442" alt="Screenshot 2024-10-31 at 7 15 49 AM" src="https://github.com/user-attachments/assets/3626045d-7464-446e-befc-106587cd0168">
+
 ---
 
-3. Librarian Mode
+Option 2: Librarian Mode
 
 Librarian Menu Options:
 - 1. Search Operations: Directs the user to a Search Menu for more specific search functions (as outlined above in Patron Mode).
@@ -37,17 +54,51 @@ Librarian Menu Options:
 - 4. Patron Management: Allows staff to add, edit, and delete patrons.
 - 5. Return to Main Menu: Returns to the Main Menu.
 
----
+The search operations work exactly the same as those in Patron Mode. Librarians also have the option to add, edit, and delete authors, library items, and patrons.
 
-Image 2
+<img width="246" alt="Screenshot 2024-10-31 at 7 21 25 AM" src="https://github.com/user-attachments/assets/067cfc7b-4813-46c2-84fa-9b8932fe6fd0">
 
----
+Add:
 
-Image 3
+-Author
 
----
+<img width="405" alt="Screenshot 2024-10-31 at 7 25 42 AM" src="https://github.com/user-attachments/assets/9f2714e5-82f8-4611-8dfb-d80b90b8b44d">
 
-Image 4
+-Item
+
+<img width="363" alt="Screenshot 2024-10-31 at 7 31 27 AM" src="https://github.com/user-attachments/assets/515be300-f7e4-479b-a34d-2eac0ff6c768">
+
+-Patron
+
+<img width="421" alt="Screenshot 2024-10-31 at 7 34 29 AM" src="https://github.com/user-attachments/assets/cf181266-c24f-48d0-810b-b4071e6aeeba">
+
+Edit:
+
+--Author:
+
+<img width="424" alt="Screenshot 2024-10-31 at 7 37 04 AM" src="https://github.com/user-attachments/assets/4e2408d4-4f3e-4b60-ad2c-41f03c038590">
+
+--Item
+
+<img width="304" alt="Screenshot 2024-10-31 at 7 39 24 AM" src="https://github.com/user-attachments/assets/94b91d0f-bfe6-4229-8681-f4a26b364fba">
+
+--Patron
+
+<img width="424" alt="Screenshot 2024-10-31 at 7 41 17 AM" src="https://github.com/user-attachments/assets/c4d4eafd-50f0-4f5c-b195-375cc4ca265e">
+
+Delete:
+
+--Author
+
+<img width="451" alt="Screenshot 2024-10-31 at 7 46 24 AM" src="https://github.com/user-attachments/assets/8ccc2d66-b599-42c2-941a-3c880b7b7a9d">
+
+--Item
+
+<img width="483" alt="Screenshot 2024-10-31 at 7 47 56 AM" src="https://github.com/user-attachments/assets/7c476a03-6975-469c-8482-9b8e6f5ac36a">
+
+--Patron
+
+<img width="412" alt="Screenshot 2024-10-31 at 7 49 18 AM" src="https://github.com/user-attachments/assets/e634a518-ca25-4b81-878d-d1d790252610">
 
 ---
 
